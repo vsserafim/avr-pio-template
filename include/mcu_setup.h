@@ -9,16 +9,16 @@
 #define MCUSETUP_H
 
 #ifdef __AVR_ATmega328P__
-#include "atmega328p.h"
+#include "mcusetup/atmega328p.h"
 
 #elif __AVR_ATmega8__
-#include "atmega8.h"
+#include "mcusetup/atmega8.h"
 
 #elif __AVR_ATtiny85__
-#include "attiny85.h"
+#include "mcusetup/attiny85.h"
 
 #elif __AVR_ATtiny13A__
-#include "attiny13a.h"
+#include "mcusetup/attiny13a.h"
 
 #endif
 

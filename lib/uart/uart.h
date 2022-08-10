@@ -23,13 +23,19 @@
 #ifndef UART_H
 #define UART_H
 
-#include "uartbaudrates.h"
+//#include "uartbaudrates.h"
 
 #include <math.h>
 #include <avr/io.h>
 #include <avr/wdt.h>
 #include <avr/sfr_defs.h>
+#include <util/delay.h>
 #include <string.h>
+
+#ifdef BAUD
+// This calculates UBRRH_VALUE and UBRRL_VALUE
+#include <util/setbaud.h>
+#endif
 
 #define BITSET(sfr, bit)        (_SFR_BYTE(sfr) |= _BV(bit))
 #define BITCLEAR(sfr, bit)      (_SFR_BYTE(sfr) &= ~_BV(bit))

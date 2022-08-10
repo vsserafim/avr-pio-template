@@ -1,6 +1,6 @@
 /*
  *  main.cpp
- * 
+ *
  * Vinícius da Silveira Serafim <vinicius@serafim.eti.br>
  */
 
@@ -10,20 +10,7 @@
 // http://www.nongnu.org/avr-libc/user-manual/group__avr__eeprom.html
 
 /**
- * Main loop
- */
-static inline void main_loop()
-{
-    LED_ON;
-    uart_sendByte('L');
-    _delay_ms(50);
-    LED_OFF;
-    uart_sendByte('.');
-    _delay_ms(950);
-}
-
-/**
- * Main 
+ * Main
  */
 int main(void)
 {
@@ -32,8 +19,11 @@ int main(void)
     mcu_init();
 
     /* your setup */
+
+#ifdef BAUD
     uart_init();
     uart_sendString("avr-pio-template\n");
+#endif
 
     /* main loop */
     while (1)
@@ -43,6 +33,23 @@ int main(void)
     set_sleep_mode(SLEEP_MODE_PWR_DOWN);
     cli();
     sleep_mode();
+}
+
+/**
+ * Main loop
+ */
+static inline void main_loop()
+{
+    LED_ON;
+#ifdef BAUD
+    uart_sendByte('L');
+#endif
+    _delay_ms(50);
+    LED_OFF;
+#ifdef BAUD
+    uart_sendByte('.');
+#endif
+    _delay_ms(950);
 }
 
 // eof

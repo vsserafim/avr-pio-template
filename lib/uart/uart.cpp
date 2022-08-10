@@ -16,8 +16,13 @@ void uart_init()
 {
 
 #ifdef __AVR_ATmega328P__
-    UBRR0H = USART_UBRRH;
-    UBRR0L = USART_UBRRL;
+
+    // Enable USART
+    BITCLEAR(PRR, PRUSART0);
+
+    // Set BAUD rate
+    UBRR0H = UBRRH_VALUE;
+    UBRR0L = UBRRL_VALUE;
 
     // Transmitter Enabled
     BITSET(UCSR0B, TXEN0);
@@ -29,8 +34,8 @@ void uart_init()
     UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
 
 #elif __AVR_ATmega8__
-    UBRRH = USART_UBRRH;
-    UBRRL = USART_UBRRL;
+    UBRRH = UBRRH_VALUE;
+    UBRRL = UBRRL_VALUE;
 
     // Transmitter Enable
     BITSET(UCSRB, TXEN);
