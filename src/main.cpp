@@ -15,9 +15,10 @@
 static inline void main_loop()
 {
     LED_ON;
-    _delay_ms(50);
     uart_sendByte('L');
+    _delay_ms(50);
     LED_OFF;
+    uart_sendByte('.');
     _delay_ms(950);
 }
 

@@ -25,7 +25,12 @@
 /*
  *  PIN NAMES AND CONFIGURATION
  */
+
+#ifdef __ARDUINO_UNO__
+#define LED_PIN         PB5
+#else
 #define LED_PIN         PB0
+#endif
 #define LED_PORT        PORTB
 
 /*
@@ -58,7 +63,11 @@
  *
  * ATENTION: F_CPU defined in platformio.ini (board_build.f_cpu)
  */
+#ifdef __ARDUINO_UNO__
+#define CLOCK_DIV clock_div_1
+#else
 #define CLOCK_DIV   clock_div_8 // clock prescaler factor
+#endif
 
 /**
  * Initializes MCU.
