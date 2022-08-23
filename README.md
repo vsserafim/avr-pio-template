@@ -1,5 +1,17 @@
 # Tips
 
+## MCU Setup
+
+Setup your device ports and peripherals editing the specific mcu_setup header file.
+
+**IMPORTANT: Peripherals are disabled by default and all ports are setted to work as inputs with pull-ups.**
+
+The header files can be found in the following directory:
+
+```text
+include/mcu_setup/
+```
+
 ## Serial BAUD rate
 
 - BAUD rate limit is related to MCU Freq (F_CPU)
@@ -28,9 +40,6 @@ Use this site for fuses calculation: <https://www.engbedded.com/fusecalc/>
 
 Adjust fuses values in the platformio.ini file.
 
-## MCU Setup
-
-Everything is disabled by default in the include/mcusetup/*.h files.
 
 ## Author
 

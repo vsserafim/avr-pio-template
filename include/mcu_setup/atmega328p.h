@@ -24,7 +24,6 @@
 /*
  *  PIN NAMES AND CONFIGURATION
  */
-
 #ifdef __ARDUINO_UNO__
 #define LED_PIN PB5
 #else

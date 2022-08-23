@@ -14,11 +14,10 @@
  */
 int main(void)
 {
-
-    /* must be called first */
+    /* mcu_init must be called first */
     mcu_init();
 
-    /* your setup */
+    /* here goes the setup not covered by mcu_init */
 
 #ifdef BAUD
     uart_init();
