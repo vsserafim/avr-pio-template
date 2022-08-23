@@ -59,6 +59,8 @@ bool uart_dataready()
     return bit_is_set(UCSR0A, RXC0);
 #elif __AVR_ATmega8__
     return bit_is_set(UCSRA, RXC);
+#else
+    return false;
 #endif
 }
 
@@ -93,6 +95,8 @@ uint8_t uart_readByte()
 #elif __AVR_ATmega8__
     loop_until_bit_is_set(UCSRA, RXC);
     return UDR;
+#else
+    return '\0';
 #endif
 }
 
