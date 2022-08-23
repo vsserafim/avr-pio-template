@@ -1,8 +1,8 @@
 /*
  * UART (Serial Interface)
- * 
+ *
  * Very simple UART implementation.
- * 
+ *
  * ATmega328P
  * ATmega8
  */
@@ -51,7 +51,7 @@ void uart_init()
 
 /**
  * Check if there is data to be read.
- * @return 
+ * @return
  */
 bool uart_dataready()
 {
@@ -83,7 +83,7 @@ void uart_rx(bool enable)
 
 /**
  * Read one byte (resets watchdog)
- * @return 
+ * @return
  */
 uint8_t uart_readByte()
 {

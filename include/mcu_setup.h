@@ -1,9 +1,8 @@
 /*
  * mcusetup.h
- * 
+ *
  * Vinícius da Silveira Serafim <vinicius@serafim.eti.br>
  */
-
 
 #ifndef MCUSETUP_H
 #define MCUSETUP_H
@@ -22,6 +21,6 @@
 
 #endif
 
-#endif	// MCUSETUP_H
+#endif // MCUSETUP_H
 
 // eof
