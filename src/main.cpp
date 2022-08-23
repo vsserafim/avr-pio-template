@@ -20,8 +20,8 @@ int main(void)
     /* here goes the setup not covered by mcu_init */
 
 #ifdef BAUD
-    uart_init();
-    uart_sendString("avr-pio-template\n");
+    usart_init();
+    usart_sendString("avr-pio-template\n");
 #endif
 
     /* main loop */
@@ -41,12 +41,12 @@ static inline void main_loop()
 {
     LED_ON;
 #ifdef BAUD
-    uart_sendByte('L');
+    usart_sendByte('L');
 #endif
     _delay_ms(50);
     LED_OFF;
 #ifdef BAUD
-    uart_sendByte('.');
+    usart_sendByte('.');
 #endif
     _delay_ms(950);
 }

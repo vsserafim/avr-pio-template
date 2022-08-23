@@ -1,18 +1,37 @@
 /*
- * UART (Serial Interface)
+ * USART (Serial Interface)
  *
- * Very simple UART implementation.
+ * Very simple USART implementation.
  *
  * ATmega328P
  * ATmega8
  */
 
-#include "uart.h"
+#ifndef USART_H
+#define USART_H
+
+#include <math.h>
+#include <avr/io.h>
+#include <avr/wdt.h>
+#include <avr/sfr_defs.h>
+#include <util/delay.h>
+#include <string.h>
+
+#ifdef BAUD
+// This calculates UBRRH_VALUE and UBRRL_VALUE
+#include <util/setbaud.h>
+#endif
+
+#define BITSET(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
+#define BITCLEAR(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
+#define BITINVERT(sfr, bit) (_SFR_BYTE(sfr) ^= _BV(bit))
+
+void usart_sendString(const char[]);
 
 /**
- * USART configuration and enable
+ * USART enable and configure
  */
-void uart_init()
+static inline void usart_init()
 {
 
 #ifdef __AVR_ATmega328P__
@@ -53,7 +72,7 @@ void uart_init()
  * Check if there is data to be read.
  * @return
  */
-bool uart_dataready()
+static inline bool usart_dataready()
 {
 #ifdef __AVR_ATmega328P__
     return bit_is_set(UCSR0A, RXC0);
@@ -68,7 +87,7 @@ bool uart_dataready()
  * Enable/disable rx
  * @param enable
  */
-void uart_rx(bool enable)
+static inline void usart_rx(bool enable)
 {
 #ifdef __AVR_ATmega328P__
     if (enable)
@@ -87,7 +106,7 @@ void uart_rx(bool enable)
  * Read one byte (resets watchdog)
  * @return
  */
-uint8_t uart_readByte()
+static inline uint8_t usart_readByte()
 {
 #ifdef __AVR_ATmega328P__
     loop_until_bit_is_set(UCSR0A, RXC0);
@@ -104,7 +123,7 @@ uint8_t uart_readByte()
  * Send one byte (resets watchdog)
  * @param byte
  */
-void uart_sendByte(uint8_t byte)
+static inline void usart_sendByte(uint8_t byte)
 {
 #ifdef __AVR_ATmega328P__
     loop_until_bit_is_set(UCSR0A, UDRE0);
@@ -115,17 +134,4 @@ void uart_sendByte(uint8_t byte)
 #endif
 }
 
-/**
- * Send a null terminated string
- * @param str
- */
-void uart_sendString(const char s[])
-{
-    uint8_t i = 0;
-
-    while (s[i] != '\0')
-    {
-        uart_sendByte(s[i]);
-        i++;
-    }
-}
+#endif /* USART_H */

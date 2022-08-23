@@ -9,7 +9,7 @@
 
 #include "misc.h"
 #include "mcu_setup.h"
-#include <uart.h>
+#include <usart.h>
 
 #include <avr/io.h>
 #include <util/delay.h>
