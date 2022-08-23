@@ -17,7 +17,6 @@
 #define ATTINY13_H
 
 #include "misc.h"
-#include "port.h"
 #include <avr/io.h>
 #include <avr/fuse.h>
 #include <avr/power.h>
