@@ -40,6 +40,11 @@ Use this site for fuses calculation: <https://www.engbedded.com/fusecalc/>
 
 Adjust fuses values in the platformio.ini file.
 
+## Datasheets, Application notes and other useful documents
+
+The *docs* directory contains some useful stuff that you probably should already know about.
+
+The same AVR documents and much much more can be found in the following link: <https://www.microchip.com/doclisting/TechDoc.aspx>.
 
 ## Author
 
