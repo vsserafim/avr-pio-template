@@ -87,7 +87,7 @@ static inline bool usart_dataready()
  * Enable/disable rx
  * @param enable
  */
-static inline void usart_rx(bool enable)
+static inline void usart_enable_rx(bool enable)
 {
 #ifdef __AVR_ATmega328P__
     if (enable)

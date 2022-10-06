@@ -22,6 +22,9 @@ int main(void)
 #ifdef BAUD
     usart_init();
     usart_sendString("avr-pio-template\n");
+
+    // rx must be enabled to receive data, default is disabled
+    //usart_enable_rx(true);
 #endif
 
     /* main loop */
