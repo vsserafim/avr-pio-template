@@ -20,6 +20,7 @@
 #ifdef BAUD
 // This calculates UBRRH_VALUE and UBRRL_VALUE
 #include <util/setbaud.h>
+#define USART_ENABLED
 #endif
 
 #define BITSET(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
