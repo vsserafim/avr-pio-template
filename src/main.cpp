@@ -2,6 +2,8 @@
  *  main.cpp
  *
  * Vinícius da Silveira Serafim <vinicius@serafim.eti.br>
+ * 
+ * Tip: do not change the main() function, use setup() and main_loop() instead.
  */
 
 #include "main.h"
@@ -17,15 +19,8 @@ int main(void)
     /* mcu_init must be called first */
     mcu_init();
 
-    /* here goes the setup not covered by mcu_init */
-
-#ifdef BAUD
-    usart_init();
-    usart_sendString("avr-pio-template\n");
-
-    // rx must be enabled to receive data, default is disabled
-    //usart_enable_rx(true);
-#endif
+    /* setup must be called before the main loop */
+    setup();
 
     /* main loop */
     while (1)
@@ -38,17 +33,31 @@ int main(void)
 }
 
 /**
+ * Setup
+ * Here goes the setup not covered by mcu_init
+ */
+static inline void setup()
+{
+#ifdef USART_ENABLED
+    usart_init();
+    usart_sendString("avr-pio-template\n");
+    // rx must be enabled to receive data, default is disabled
+    // usart_enable_rx(true);
+#endif
+}
+
+/**
  * Main loop
  */
 static inline void main_loop()
 {
     LED_ON;
-#ifdef BAUD
+#ifdef USART_ENABLED
     usart_sendByte('L');
 #endif
     _delay_ms(50);
     LED_OFF;
-#ifdef BAUD
+#ifdef USART_ENABLED
     usart_sendByte('.');
 #endif
     _delay_ms(950);

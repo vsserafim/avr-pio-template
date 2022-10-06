@@ -20,6 +20,7 @@
 #define LED_ON BITSET(LED_PORT, LED_PIN)
 #define LED_OFF BITCLEAR(LED_PORT, LED_PIN)
 
+static inline void setup();
 static inline void main_loop();
 
 #endif /* MAIN_H */
